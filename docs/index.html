@@ -1,0 +1,296 @@
+<!doctype html>
+<html class="default no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>@tawaship/pixim-box2d - v1.0.1</title>
+	<meta name="description" content="Documentation for @tawaship/pixim-box2d - v1.0.1">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="assets/css/main.css">
+	<script async src="assets/js/search.js" id="search-script"></script>
+</head>
+<body>
+<header>
+	<div class="tsd-page-toolbar">
+		<div class="container">
+			<div class="table-wrap">
+				<div class="table-cell" id="tsd-search" data-index="assets/js/search.json" data-base=".">
+					<div class="field">
+						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+						<input id="tsd-search-field" type="text" />
+					</div>
+					<ul class="results">
+						<li class="state loading">Preparing search index...</li>
+						<li class="state failure">The search index is not available</li>
+					</ul>
+					<a href="index.html" class="title">@tawaship/pixim-box2d - v1.0.1</a>
+				</div>
+				<div class="table-cell" id="tsd-widgets">
+					<div id="tsd-filter">
+						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
+						<div class="tsd-filter-group">
+							<div class="tsd-select" id="tsd-filter-visibility">
+								<span class="tsd-select-label">All</span>
+								<ul class="tsd-select-list">
+									<li data-value="public">Public</li>
+									<li data-value="protected">Public/Protected</li>
+									<li data-value="private" class="selected">All</li>
+								</ul>
+							</div>
+							<input type="checkbox" id="tsd-filter-inherited" checked />
+							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+							<input type="checkbox" id="tsd-filter-externals" checked />
+							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
+						</div>
+					</div>
+					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tsd-page-title">
+		<div class="container">
+			<h1>@tawaship/pixim-box2d - v1.0.1</h1>
+		</div>
+	</div>
+</header>
+<div class="container container-main">
+	<div class="row">
+		<div class="col-8 col-content">
+			<div class="tsd-panel tsd-typography">
+				<a href="#pixim-box2d" id="pixim-box2d" style="color: inherit; text-decoration: none;">
+					<h1>pixim-box2d</h1>
+				</a>
+				<p>&quot;pixim-box2d&quot; is a plugin for using &quot;<a href="https://github.com/hecht-software/box2dweb">box2dweb</a>&quot; with &quot;<a href="https://github.com/tawaship/Pixim.js">Pixim.js</a>&quot;.</p>
+				<p><a href="https://travis-ci.com/tawaship/pixi-box2d"><img src="https://travis-ci.com/tawaship/pixi-box2d.svg?branch=master" alt="Build Status"></a>
+				<a href="LICENSE"><img src="http://img.shields.io/badge/license-MIT-blue.svg?style=flat" alt="MIT License"></a></p>
+				<hr>
+				<a href="#supported-version" id="supported-version" style="color: inherit; text-decoration: none;">
+					<h2>Supported version</h2>
+				</a>
+				<ul>
+					<li>box2dweb 2.1.0-b</li>
+					<li>pixi.js 5.3.x</li>
+					<li>@tawaship/pixim.js.js 1.11.x</li>
+				</ul>
+				<p>I have not confirmed the operation on other versions.</p>
+				<a href="#setup" id="setup" style="color: inherit; text-decoration: none;">
+					<h2>Setup</h2>
+				</a>
+				<a href="#npm" id="npm" style="color: inherit; text-decoration: none;">
+					<h3>NPM</h3>
+				</a>
+				<pre><code class="language-sh"><span style="color: #000000">npm install --save pixi.js @tawaship/pixi-box2d</span>
+</code></pre>
+				<br />
+				<pre><code class="language-javascript"><span style="color: #AF00DB">import</span><span style="color: #000000"> </span><span style="color: #0000FF">*</span><span style="color: #000000"> </span><span style="color: #AF00DB">as</span><span style="color: #000000"> </span><span style="color: #001080">PIXI</span><span style="color: #000000"> </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;pixi.js&#039;</span><span style="color: #000000">;</span>
+<span style="color: #AF00DB">import</span><span style="color: #000000"> </span><span style="color: #0000FF">*</span><span style="color: #000000"> </span><span style="color: #AF00DB">as</span><span style="color: #000000"> </span><span style="color: #001080">Pixim</span><span style="color: #000000"> </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;@tawaship/pixim.js&#039;</span><span style="color: #000000">;</span>
+<span style="color: #AF00DB">import</span><span style="color: #000000"> </span><span style="color: #0000FF">*</span><span style="color: #000000"> </span><span style="color: #AF00DB">as</span><span style="color: #000000"> </span><span style="color: #001080">PiximBox2d</span><span style="color: #000000"> </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;@tawaship/pixim-box2d&#039;</span><span style="color: #000000">;</span>
+</code></pre>
+				<a href="#browser" id="browser" style="color: inherit; text-decoration: none;">
+					<h3>Browser</h3>
+				</a>
+				<pre><code class="language-sh"><span style="color: #000000">git clone https://github.com/tawaship/pixi-box2d</span>
+</code></pre>
+				<br />
+				<pre><code class="language-html"><span style="color: #800000">&lt;script</span><span style="color: #000000FF"> </span><span style="color: #FF0000">src</span><span style="color: #000000FF">=</span><span style="color: #0000FF">&quot;https://cdnjs.cloudflare.com/ajax/libs/pixi.js/5.3.3/pixi.min.js&quot;</span><span style="color: #800000">&gt;&lt;/script&gt;</span>
+<span style="color: #800000">&lt;script</span><span style="color: #000000FF"> </span><span style="color: #FF0000">src</span><span style="color: #000000FF">=</span><span style="color: #0000FF">&quot;/path/to/lib/Box2d.min.js&quot;</span><span style="color: #800000">&gt;&lt;/script&gt;</span>
+<span style="color: #800000">&lt;script</span><span style="color: #000000FF"> </span><span style="color: #FF0000">src</span><span style="color: #000000FF">=</span><span style="color: #0000FF">&quot;/path/to/dist/pixi-box2d.min.js&quot;</span><span style="color: #800000">&gt;&lt;/script&gt;</span>
+</code></pre>
+				<a href="#usage" id="usage" style="color: inherit; text-decoration: none;">
+					<h2>Usage</h2>
+				</a>
+				<p>For browsers, this module is stored in the namespace &quot;Pixim.box2d&quot;.</p>
+				<pre><code class="language-javascript"><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">app</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #001080">Pixim</span><span style="color: #000000">.</span><span style="color: #795E26">Application</span><span style="color: #000000">({</span>
+<span style="color: #000000">    </span><span style="color: #001080">width:</span><span style="color: #000000"> </span><span style="color: #098658">450</span><span style="color: #000000">,</span>
+<span style="color: #000000">    </span><span style="color: #001080">height:</span><span style="color: #000000"> </span><span style="color: #098658">800</span>
+<span style="color: #000000">});</span>
+
+<span style="color: #0000FF">class</span><span style="color: #000000"> </span><span style="color: #267F99">Root</span><span style="color: #000000"> </span><span style="color: #0000FF">extends</span><span style="color: #000000"> </span><span style="color: #267F99">Pixim</span><span style="color: #000000">.</span><span style="color: #267F99">Container</span><span style="color: #000000"> {</span>
+<span style="color: #000000">    </span><span style="color: #0000FF">constructor</span><span style="color: #000000">() {</span>
+<span style="color: #000000">        </span><span style="color: #0000FF">super</span><span style="color: #000000">();</span>
+<span style="color: #000000">        </span>
+<span style="color: #000000">        </span><span style="color: #0000FF">this</span><span style="color: #000000">.</span><span style="color: #795E26">addChild</span><span style="color: #000000">(</span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #0070C1">PIXI</span><span style="color: #000000">.</span><span style="color: #795E26">Graphics</span><span style="color: #000000">()).</span><span style="color: #795E26">beginFill</span><span style="color: #000000">(</span><span style="color: #098658">0x00FF00</span><span style="color: #000000">).</span><span style="color: #795E26">drawRect</span><span style="color: #000000">(</span><span style="color: #098658">0</span><span style="color: #000000">, </span><span style="color: #098658">0</span><span style="color: #000000">, </span><span style="color: #098658">450</span><span style="color: #000000">, </span><span style="color: #098658">800</span><span style="color: #000000"> / </span><span style="color: #098658">2</span><span style="color: #000000">)</span>
+<span style="color: #000000">        </span><span style="color: #0000FF">this</span><span style="color: #000000">.</span><span style="color: #001080">interactive</span><span style="color: #000000"> = </span><span style="color: #0000FF">true</span><span style="color: #000000">;</span>
+<span style="color: #000000">        </span><span style="color: #0000FF">this</span><span style="color: #000000">.</span><span style="color: #001080">cursor</span><span style="color: #000000"> = </span><span style="color: #A31515">&#039;pointer&#039;</span>
+<span style="color: #000000">        </span>
+<span style="color: #000000">        </span><span style="color: #008000">// create World</span>
+<span style="color: #000000">        </span><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">world</span><span style="color: #000000"> = </span><span style="color: #0000FF">this</span><span style="color: #000000">.</span><span style="color: #795E26">addChild</span><span style="color: #000000">(</span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #001080">Pixim</span><span style="color: #000000">.</span><span style="color: #001080">box2d</span><span style="color: #000000">.</span><span style="color: #795E26">WorldContainer</span><span style="color: #000000">({</span>
+<span style="color: #000000">            </span><span style="color: #001080">listenPreSolve:</span><span style="color: #000000"> </span><span style="color: #0000FF">false</span><span style="color: #000000">,</span>
+<span style="color: #000000">            </span><span style="color: #001080">listenPostSolve:</span><span style="color: #000000"> </span><span style="color: #0000FF">false</span><span style="color: #000000">,</span>
+<span style="color: #000000">            </span><span style="color: #001080">listenBeginContact:</span><span style="color: #000000"> </span><span style="color: #0000FF">false</span><span style="color: #000000">,</span>
+<span style="color: #000000">            </span><span style="color: #001080">listenEndContact:</span><span style="color: #000000"> </span><span style="color: #0000FF">true</span><span style="color: #000000">,</span>
+<span style="color: #000000">            </span><span style="color: #001080">ticker:</span><span style="color: #000000"> </span><span style="color: #001080">app</span><span style="color: #000000">.</span><span style="color: #001080">ticker</span>
+<span style="color: #000000">        }));</span>
+<span style="color: #000000">        </span>
+<span style="color: #000000">        </span><span style="color: #008000">// create component</span>
+<span style="color: #000000">        </span><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">a</span><span style="color: #000000"> = </span><span style="color: #001080">world</span><span style="color: #000000">.</span><span style="color: #795E26">addBox2d</span><span style="color: #000000">(</span><span style="color: #001080">Pixim</span><span style="color: #000000">.</span><span style="color: #001080">box2d</span><span style="color: #000000">.</span><span style="color: #001080">Circle</span><span style="color: #000000">.</span><span style="color: #795E26">from</span><span style="color: #000000">(</span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #0070C1">PIXI</span><span style="color: #000000">.</span><span style="color: #795E26">Graphics</span><span style="color: #000000">().</span><span style="color: #795E26">beginFill</span><span style="color: #000000">(</span><span style="color: #098658">0xFF0000</span><span style="color: #000000">).</span><span style="color: #795E26">drawCircle</span><span style="color: #000000">(</span><span style="color: #098658">100</span><span style="color: #000000">, </span><span style="color: #098658">0</span><span style="color: #000000">, </span><span style="color: #098658">20</span><span style="color: #000000">), {</span>
+<span style="color: #000000">            </span><span style="color: #001080">density:</span><span style="color: #000000"> </span><span style="color: #098658">0.1</span><span style="color: #000000">,</span>
+<span style="color: #000000">            </span><span style="color: #001080">restitution:</span><span style="color: #000000"> </span><span style="color: #098658">0.1</span><span style="color: #000000">,</span>
+<span style="color: #000000">            </span><span style="color: #001080">categoryBits:</span><span style="color: #000000"> </span><span style="color: #098658">2</span>
+<span style="color: #000000">        }));</span>
+<span style="color: #000000">        </span><span style="color: #001080">a</span><span style="color: #000000">.</span><span style="color: #795E26">setX</span><span style="color: #000000">(</span><span style="color: #098658">120</span><span style="color: #000000">);</span>
+<span style="color: #000000">        </span>
+<span style="color: #000000">        </span><span style="color: #008000">// create component when click</span>
+<span style="color: #000000">        </span><span style="color: #0000FF">this</span><span style="color: #000000">.</span><span style="color: #795E26">on</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;pointerdown&quot;</span><span style="color: #000000">, (</span><span style="color: #001080">e</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">            </span><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">r</span><span style="color: #000000"> = </span><span style="color: #267F99">Math</span><span style="color: #000000">.</span><span style="color: #795E26">random</span><span style="color: #000000">() &gt; </span><span style="color: #098658">0.5</span><span style="color: #000000">;</span>
+<span style="color: #000000">            </span><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">w</span><span style="color: #000000"> = </span><span style="color: #098658">100</span>
+<span style="color: #000000">            </span><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">h</span><span style="color: #000000"> = </span><span style="color: #098658">150</span>
+<span style="color: #000000">            </span>
+<span style="color: #000000">            </span><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">a2</span><span style="color: #000000"> = </span><span style="color: #001080">world</span><span style="color: #000000">.</span><span style="color: #795E26">addBox2d</span><span style="color: #000000">(</span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #001080">Pixim</span><span style="color: #000000">.</span><span style="color: #001080">box2d</span><span style="color: #000000">.</span><span style="color: #795E26">Rectangle</span><span style="color: #000000">(</span><span style="color: #001080">w</span><span style="color: #000000">, </span><span style="color: #001080">h</span><span style="color: #000000">, {</span>
+<span style="color: #000000">                </span><span style="color: #001080">density:</span><span style="color: #000000"> </span><span style="color: #098658">0.1</span><span style="color: #000000">,</span>
+<span style="color: #000000">                </span><span style="color: #001080">restitution:</span><span style="color: #000000"> </span><span style="color: #098658">0.1</span><span style="color: #000000">,</span>
+<span style="color: #000000">                </span><span style="color: #001080">friction:</span><span style="color: #000000"> </span><span style="color: #098658">0.9</span><span style="color: #000000">,</span>
+<span style="color: #000000">                </span><span style="color: #001080">categoryBits:</span><span style="color: #000000"> </span><span style="color: #098658">1</span>
+<span style="color: #000000">            }));</span>
+<span style="color: #000000">            </span>
+<span style="color: #000000">            </span><span style="color: #001080">a2</span><span style="color: #000000">.</span><span style="color: #795E26">addChild</span><span style="color: #000000">(</span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #0070C1">PIXI</span><span style="color: #000000">.</span><span style="color: #795E26">Graphics</span><span style="color: #000000">().</span><span style="color: #795E26">beginFill</span><span style="color: #000000">(</span><span style="color: #098658">0xFF0000</span><span style="color: #000000">).</span><span style="color: #795E26">drawRect</span><span style="color: #000000">(</span><span style="color: #098658">0</span><span style="color: #000000">, </span><span style="color: #098658">0</span><span style="color: #000000">, </span><span style="color: #001080">w</span><span style="color: #000000">, </span><span style="color: #001080">h</span><span style="color: #000000">));</span>
+<span style="color: #000000">            </span>
+<span style="color: #000000">            </span><span style="color: #AF00DB">if</span><span style="color: #000000"> (!</span><span style="color: #001080">r</span><span style="color: #000000">) {</span>
+<span style="color: #000000">                </span><span style="color: #001080">a2</span><span style="color: #000000">.</span><span style="color: #795E26">setX</span><span style="color: #000000">(</span><span style="color: #001080">e</span><span style="color: #000000">.</span><span style="color: #001080">data</span><span style="color: #000000">.</span><span style="color: #001080">global</span><span style="color: #000000">.</span><span style="color: #001080">x</span><span style="color: #000000"> - </span><span style="color: #001080">a2</span><span style="color: #000000">.</span><span style="color: #001080">width</span><span style="color: #000000"> / </span><span style="color: #098658">2</span><span style="color: #000000">);</span>
+<span style="color: #000000">                </span><span style="color: #001080">a2</span><span style="color: #000000">.</span><span style="color: #795E26">setY</span><span style="color: #000000">(</span><span style="color: #001080">e</span><span style="color: #000000">.</span><span style="color: #001080">data</span><span style="color: #000000">.</span><span style="color: #001080">global</span><span style="color: #000000">.</span><span style="color: #001080">y</span><span style="color: #000000"> - </span><span style="color: #001080">a2</span><span style="color: #000000">.</span><span style="color: #001080">height</span><span style="color: #000000"> / </span><span style="color: #098658">2</span><span style="color: #000000">);</span>
+<span style="color: #000000">            } </span><span style="color: #AF00DB">else</span><span style="color: #000000"> {</span>
+<span style="color: #000000">                </span><span style="color: #001080">a2</span><span style="color: #000000">.</span><span style="color: #795E26">setRotation</span><span style="color: #000000">(</span><span style="color: #098658">90</span><span style="color: #000000"> * </span><span style="color: #267F99">Math</span><span style="color: #000000">.PI / </span><span style="color: #098658">180</span><span style="color: #000000">);</span>
+<span style="color: #000000">                </span><span style="color: #001080">a2</span><span style="color: #000000">.</span><span style="color: #795E26">setX</span><span style="color: #000000">(</span><span style="color: #001080">e</span><span style="color: #000000">.</span><span style="color: #001080">data</span><span style="color: #000000">.</span><span style="color: #001080">global</span><span style="color: #000000">.</span><span style="color: #001080">x</span><span style="color: #000000"> + </span><span style="color: #001080">a2</span><span style="color: #000000">.</span><span style="color: #001080">height</span><span style="color: #000000"> / </span><span style="color: #098658">2</span><span style="color: #000000">);</span>
+<span style="color: #000000">                </span><span style="color: #001080">a2</span><span style="color: #000000">.</span><span style="color: #795E26">setY</span><span style="color: #000000">(</span><span style="color: #001080">e</span><span style="color: #000000">.</span><span style="color: #001080">data</span><span style="color: #000000">.</span><span style="color: #001080">global</span><span style="color: #000000">.</span><span style="color: #001080">y</span><span style="color: #000000"> - </span><span style="color: #001080">a2</span><span style="color: #000000">.</span><span style="color: #001080">width</span><span style="color: #000000"> / </span><span style="color: #098658">2</span><span style="color: #000000">);</span>
+<span style="color: #000000">            }</span>
+<span style="color: #000000">        })</span>
+<span style="color: #000000">        </span>
+<span style="color: #000000">        </span><span style="color: #008000">// create static component</span>
+<span style="color: #000000">        </span><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">baseHeight</span><span style="color: #000000"> = </span><span style="color: #098658">100</span><span style="color: #000000">;</span>
+<span style="color: #000000">        </span><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">base</span><span style="color: #000000"> = </span><span style="color: #001080">world</span><span style="color: #000000">.</span><span style="color: #795E26">addBox2d</span><span style="color: #000000">(</span><span style="color: #001080">Pixim</span><span style="color: #000000">.</span><span style="color: #001080">box2d</span><span style="color: #000000">.</span><span style="color: #001080">Rectangle</span><span style="color: #000000">.</span><span style="color: #795E26">from</span><span style="color: #000000">(</span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #0070C1">PIXI</span><span style="color: #000000">.</span><span style="color: #795E26">Graphics</span><span style="color: #000000">().</span><span style="color: #795E26">beginFill</span><span style="color: #000000">(</span><span style="color: #098658">0x0000FF</span><span style="color: #000000">).</span><span style="color: #795E26">drawRect</span><span style="color: #000000">(</span><span style="color: #098658">0</span><span style="color: #000000">, </span><span style="color: #098658">0</span><span style="color: #000000">, </span><span style="color: #098658">450</span><span style="color: #000000"> / </span><span style="color: #098658">2</span><span style="color: #000000">, </span><span style="color: #001080">baseHeight</span><span style="color: #000000">), { </span><span style="color: #001080">isStatic:</span><span style="color: #000000"> </span><span style="color: #0000FF">true</span><span style="color: #000000"> }));</span>
+<span style="color: #000000">        </span><span style="color: #001080">base</span><span style="color: #000000">.</span><span style="color: #795E26">setX</span><span style="color: #000000">(</span><span style="color: #098658">450</span><span style="color: #000000"> / </span><span style="color: #098658">2</span><span style="color: #000000"> - </span><span style="color: #001080">base</span><span style="color: #000000">.</span><span style="color: #001080">width</span><span style="color: #000000"> / </span><span style="color: #098658">2</span><span style="color: #000000">);</span>
+<span style="color: #000000">        </span><span style="color: #001080">base</span><span style="color: #000000">.</span><span style="color: #795E26">setY</span><span style="color: #000000">(</span><span style="color: #098658">800</span><span style="color: #000000"> - </span><span style="color: #001080">baseHeight</span><span style="color: #000000"> - </span><span style="color: #098658">100</span><span style="color: #000000">);</span>
+<span style="color: #000000">        </span>
+<span style="color: #000000">        </span><span style="color: #008000">// create sensor component</span>
+<span style="color: #000000">        </span><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">dead</span><span style="color: #000000"> = </span><span style="color: #001080">world</span><span style="color: #000000">.</span><span style="color: #795E26">addBox2d</span><span style="color: #000000">(</span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #001080">Pixim</span><span style="color: #000000">.</span><span style="color: #001080">box2d</span><span style="color: #000000">.</span><span style="color: #795E26">Edge</span><span style="color: #000000">(</span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #001080">Pixim</span><span style="color: #000000">.</span><span style="color: #001080">box2d</span><span style="color: #000000">.</span><span style="color: #001080">Common</span><span style="color: #000000">.</span><span style="color: #001080">Math</span><span style="color: #000000">.</span><span style="color: #795E26">b2Vec2</span><span style="color: #000000">(</span><span style="color: #098658">450</span><span style="color: #000000"> + </span><span style="color: #098658">2000</span><span style="color: #000000">, </span><span style="color: #098658">0</span><span style="color: #000000">), { </span><span style="color: #001080">isStatic:</span><span style="color: #000000"> </span><span style="color: #0000FF">true</span><span style="color: #000000">, </span><span style="color: #001080">isSensor:</span><span style="color: #000000"> </span><span style="color: #0000FF">true</span><span style="color: #000000">, </span><span style="color: #001080">maskBits:</span><span style="color: #000000"> </span><span style="color: #098658">1</span><span style="color: #000000"> }));</span>
+<span style="color: #000000">        </span><span style="color: #001080">dead</span><span style="color: #000000">.</span><span style="color: #795E26">setX</span><span style="color: #000000">(-</span><span style="color: #098658">1000</span><span style="color: #000000">);</span>
+<span style="color: #000000">        </span><span style="color: #001080">dead</span><span style="color: #000000">.</span><span style="color: #795E26">setY</span><span style="color: #000000">(</span><span style="color: #098658">800</span><span style="color: #000000"> - </span><span style="color: #098658">10</span><span style="color: #000000">);</span>
+<span style="color: #000000">        </span><span style="color: #001080">dead</span><span style="color: #000000">.</span><span style="color: #795E26">on</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;EndContact&#039;</span><span style="color: #000000">, (</span><span style="color: #001080">opponent</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">            </span><span style="color: #001080">world</span><span style="color: #000000">.</span><span style="color: #795E26">removeBox2d</span><span style="color: #000000">(</span><span style="color: #001080">opponent</span><span style="color: #000000">);</span>
+<span style="color: #000000">            </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;gameover&quot;</span><span style="color: #000000">);</span>
+<span style="color: #000000">        });</span>
+<span style="color: #000000">    }</span>
+<span style="color: #000000">}</span>
+
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">Content</span><span style="color: #000000"> = </span><span style="color: #001080">Pixim</span><span style="color: #000000">.</span><span style="color: #001080">Content</span><span style="color: #000000">.</span><span style="color: #795E26">create</span><span style="color: #000000">();</span>
+<span style="color: #001080">Content</span><span style="color: #000000">.</span><span style="color: #795E26">defineLibraries</span><span style="color: #000000">({</span>
+<span style="color: #000000">    </span><span style="color: #001080">root:</span><span style="color: #000000"> </span><span style="color: #001080">Root</span>
+<span style="color: #000000">})</span>
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">content</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">Content</span><span style="color: #000000">();</span>
+
+<span style="color: #001080">app</span><span style="color: #000000">.</span><span style="color: #795E26">attachAsync</span><span style="color: #000000">(</span><span style="color: #001080">content</span><span style="color: #000000">)</span>
+<span style="color: #000000">.</span><span style="color: #795E26">then</span><span style="color: #000000">(() </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">    </span><span style="color: #001080">app</span><span style="color: #000000">.</span><span style="color: #795E26">play</span><span style="color: #000000">();</span>
+<span style="color: #000000">})</span>
+</code></pre>
+			</div>
+		</div>
+		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+			<nav class="tsd-navigation primary">
+				<ul>
+					<li class=" ">
+						<a href="modules.html">Exports</a>
+					</li>
+					<li class="label tsd-is-external">
+						<span>Externals</span>
+					</li>
+					<li class=" tsd-kind-namespace tsd-is-external">
+						<a href="modules/collision.html">Collision</a>
+					</li>
+					<li class=" tsd-kind-namespace tsd-parent-kind-namespace tsd-is-external">
+						<a href="modules/collision.shapes.html">Collision.<wbr>Shapes</a>
+					</li>
+					<li class=" tsd-kind-namespace tsd-is-external">
+						<a href="modules/common.html">Common</a>
+					</li>
+					<li class=" tsd-kind-namespace tsd-parent-kind-namespace tsd-is-external">
+						<a href="modules/common.math.html">Common.<wbr>Math</a>
+					</li>
+					<li class=" tsd-kind-namespace tsd-is-external">
+						<a href="modules/dynamics.html">Dynamics</a>
+					</li>
+					<li class=" tsd-kind-namespace tsd-parent-kind-namespace tsd-is-external">
+						<a href="modules/dynamics.contacts.html">Dynamics.<wbr>Contacts</a>
+					</li>
+					<li class=" tsd-kind-namespace tsd-parent-kind-namespace tsd-is-external">
+						<a href="modules/dynamics.controllers.html">Dynamics.<wbr>Controllers</a>
+					</li>
+					<li class=" tsd-kind-namespace tsd-parent-kind-namespace tsd-is-external">
+						<a href="modules/dynamics.joints.html">Dynamics.<wbr>Joints</a>
+					</li>
+				</ul>
+			</nav>
+			<nav class="tsd-navigation secondary menu-sticky">
+				<ul class="before-current">
+					<li class=" tsd-kind-class">
+						<a href="classes/box2dobject.html" class="tsd-kind-icon">Box2d<wbr>Object</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/circle.html" class="tsd-kind-icon">Circle</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/edge.html" class="tsd-kind-icon">Edge</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/polygon.html" class="tsd-kind-icon">Polygon</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/rectangle.html" class="tsd-kind-icon">Rectangle</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/worldcontainer.html" class="tsd-kind-icon">World<wbr>Container</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/ibox2dobjectdata.html" class="tsd-kind-icon">IBox2d<wbr>Object<wbr>Data</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/ibox2dobjectoption.html" class="tsd-kind-icon">IBox2d<wbr>Object<wbr>Option</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/iworldcontainerdata.html" class="tsd-kind-icon">IWorld<wbr>Container<wbr>Data</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/iworldcontaineroption.html" class="tsd-kind-icon">IWorld<wbr>Container<wbr>Option</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</div>
+</div>
+<footer class="with-border-bottom">
+	<div class="container">
+		<h2>Legend</h2>
+		<div class="tsd-legend-group">
+			<ul class="tsd-legend">
+				<li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class"><span class="tsd-kind-icon">Accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private method</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected property</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static method</span></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+<div class="container tsd-generator">
+	<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p>
+</div>
+<div class="overlay"></div>
+<script src="assets/js/main.js"></script>
+</body>
+</html>

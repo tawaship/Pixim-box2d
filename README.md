@@ -2,7 +2,7 @@
 
 "pixim-box2d" is a plugin for using "[box2dweb](https://github.com/hecht-software/box2dweb)" with "[Pixim.js](https://github.com/tawaship/Pixim.js)".
 
-[![Build Status](https://travis-ci.com/tawaship/pixi-box2d.svg?branch=master)](https://travis-ci.com/tawaship/pixi-box2d)
+[![Build Status](https://travis-ci.com/tawaship/Pixim-box2d.svg?branch=master)](https://travis-ci.com/tawaship/Pixim-box2d)
 [![MIT License](http://img.shields.io/badge/license-MIT-blue.svg?style=flat)](LICENSE)
 
 ---
@@ -11,7 +11,7 @@
 
 - box2dweb 2.1.0-b
 - pixi.js 5.3.x
-- @tawaship/pixim.js.js 1.11.x
+- @tawaship/pixim.js 1.11.x
 
 I have not confirmed the operation on other versions.
 
@@ -20,7 +20,7 @@ I have not confirmed the operation on other versions.
 ### NPM
 
 ```sh
-npm install --save pixi.js @tawaship/pixi-box2d
+npm install --save pixi.js @tawaship/pixim.js @tawaship/pixim-box2d
 ```
 
 <br />
@@ -34,7 +34,7 @@ import * as PiximBox2d from '@tawaship/pixim-box2d';
 ### Browser
 
 ```sh
-git clone https://github.com/tawaship/pixi-box2d
+git clone https://github.com/tawaship/Pixim-box2d
 ```
 
 <br />
@@ -42,7 +42,8 @@ git clone https://github.com/tawaship/pixi-box2d
 ```html
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/5.3.3/pixi.min.js"></script>
 <script src="/path/to/lib/Box2d.min.js"></script>
-<script src="/path/to/dist/pixi-box2d.min.js"></script>
+<script src="/path/to/lib/Pixim.min.js"></script>
+<script src="/path/to/dist/Pixim-box2d.min.js"></script>
 ```
 
 ## Usage

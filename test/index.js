@@ -1,17 +1,18 @@
 const assert = require('assert');
 const PIXI = require('pixi.js-legacy');
+const Pixim = require('@tawaship/pixim.js');
 const Box2d = require('../');
 const path = require('path');
 
-describe('PIXI.Box2d', () => {
+describe('Pixim.Box2d', () => {
 	it('basic', () => {
-		const app = new PIXI.Application({
+		const app = new Pixim.Application({
 			width: 450,
 			height: 800
 		});
 		
 		return new Promise(resolve => {
-			class Root extends PIXI.Container {
+			class Root extends Pixim.Container {
 				constructor() {
 					super();
 					
@@ -51,8 +52,22 @@ describe('PIXI.Box2d', () => {
 				}
 			}
 			
-			app.stage.addChild(new Root());
-			document.body.appendChild(app.view);
+			const Content = Pixim.Content.create();
+			Content.defineLibraries({
+				root: Root
+			})
+			const content = new Content();
+			
+			content.addVars({
+				displayDebugView(world) {
+					document.body.appendChild(world.addDebugDraw(app.view));
+				}
+			})
+			
+			app.attachAsync(content)
+			.then(() => {
+				app.play();
+			})
 		});
 	});
 });

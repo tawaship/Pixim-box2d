@@ -1,6 +1,6 @@
 {
   "name": "@tawaship/pixim-box2d",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "",
   "main": "dist/Pixim-box2d.cjs.js",
   "module": "dist/Pixim-box2d.esm.js",

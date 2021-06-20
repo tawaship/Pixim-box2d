@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no, minimal-ui">
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/5.3.3/pixi.js"></script>
+		<script src="../lib/Box2d.min.js"></script>
+		<script src="../lib/Pixim.min.js"></script>
+		<script src="../dist/Pixim-box2d.js"></script>
+	</head>
+	<body style="width: 100%; margin: 0;">
+		<script>
+			const app = new Pixim.Application({
+				width: 450,
+				height: 800
+			});
+			
+			class A extends Pixim.box2d.WorldContainer {
+				_handleTick(delta) {
+					if (!this._box2dData.enabled) {
+						return;
+					}
+					
+					const world = this._box2dData.world;
+					
+					world.Step(delta * this._box2dData.speed / 30, 10, 10);
+					world.ClearForces();
+					world.DrawDebugData();
+					
+					const targets = this._box2dData.targets;
+					
+					for (const i in this._box2dData.deletes) {
+						const b2d = this._box2dData.deletes[i];
+						delete(targets[i]);
+						if (b2d.body) {
+							world.DestroyBody(b2d.body);
+							b2d.body = null;
+						}
+					}
+					this._box2dData.deletes = [];
+					const Box2dToPixi = 30
+					const dy = 0
+					const sy = dy / 1;
+					
+					const base = {
+						x: 225,
+						y: 200
+					}
+					for (const i in targets) {
+						const b2d = targets[i];
+						
+						if (!b2d.body) {
+							continue;
+						}
+						
+						const position = b2d.body.GetPosition();
+						
+						b2d.y = position.y * Box2dToPixi - 0;
+						
+						const s = 1 + b2d.y * sy;
+						
+						if (s< 0) {
+							b2d.visible = false;
+							continue;
+						} else {
+							b2d.visible = true;
+						}
+						
+						b2d.scale.set(s);
+						b2d.x = (position.x * Box2dToPixi - 225) * s;
+						//b2d.y *= Math.sqrt(s) / 1
+						//b2d.y *= (1 - dy) * (s + 1) / 2
+						//b2d.y *=s / 1000 / dy
+						//b2d.y += 0
+						b2d.rotation = b2d.body.GetAngle();
+					}
+					
+					const children = this.removeChildren();
+					const n = children.sort((a, b) => {
+						if (a.y === b.y) {
+							return Math.abs(a.x) - Math.abs(b.x);
+						}
+						
+						return a.y - b.y;
+					});
+					
+					this.addChild.apply(this, n)
+				}
+			}
+			
+			class Root extends Pixim.Container {
+				constructor($) {
+					super();
+					
+					this.addChild(new PIXI.Graphics()).beginFill(0).drawRect(0, 0, 450, 800)
+					this.interactive = true;
+					this.cursor = 'pointer'
+					
+					const displayOffsetX = $.width / 2;
+					const displayOffsetY = 100;
+					const displayAngle = 0.0025;
+					
+					const world = this.addChild(new Pixim.box2d.WorldContainer({
+						gravityX: 0,
+						gravityY: 0,
+						listenPreSolve: false,
+						listenPostSolve: false,
+						listenBeginContact: false,
+						listenEndContact: true,
+						displayOffsetX,
+						displayOffsetY,
+						displayAngle
+					}));
+					
+					const canvas = $.vars.displayDebugView(world);
+					canvas.style.left = canvas.style.width;
+					
+					const baseHeight = 10;
+					
+					const col = 5;
+					const row = 5;
+					const val = 200;
+					const size = 10;
+					
+					world.x = displayOffsetX;
+					world.y = displayOffsetY;
+					for (let i = 0; i < val; i++) {
+						const a = world.addBox2d(Pixim.box2d.Circle.from(new PIXI.Graphics().beginFill(Math.random() * 0x00FFFF + 0xFF0000).drawEllipse(0, 0, size, size), {
+							density: 1,
+							restitution: 1,
+							friction:0,
+							categoryBits: 2
+						}));
+						
+						a.setX(Math.random() * size * 20 - size * 10 + displayOffsetX);
+						a.setY(Math.random() * size * 40 + baseHeight + displayOffsetY);
+					}
+					const base = world.addBox2d(Pixim.box2d.Rectangle.from(new PIXI.Graphics().beginFill(0x0000FF).drawRect(0, 0, $.width, baseHeight), {
+						density: 1,
+						restitution: 1,
+						isStatic: true
+					}));
+					
+					let baseRad = Math.PI / 180 * -90;
+					this.task.add(e => {
+						base.setY(Math.sin(baseRad += Math.PI / 180 * e.delta) * size + displayOffsetY);
+					});
+					
+					this.on("pointerdown", (e) => {
+							const a = world.addBox2d(Pixim.box2d.Circle.from(new PIXI.Graphics().beginFill(0xFF0000).drawCircle(0, 0, size), {
+								density: 0.1,
+								restitution: 0.1,
+								categoryBits: 2
+							}));
+							const p = e.data.global;
+							
+							a.setX(p.x);
+							a.setY(p.y);
+					});
+					
+					return
+					
+					const a = world.addBox2d(Pixim.box2d.Circle.from(new PIXI.Graphics().beginFill(0xFF0000).drawCircle(100, 0, 20), {
+						density: 0.1,
+						restitution: 0.1,
+						categoryBits: 2
+					}));
+					a.setX(120);
+					
+					//a.children[0].position.set(0,0)
+					//console.log(Box2D)
+					this.on("pointerdown", (e) => {
+						const r = Math.random() > 0.5;
+						const w = 100
+						const h = 150
+						
+						const a2 = world.addBox2d(new Pixim.box2d.Rectangle(w, h, {
+							density: 0.1,
+							restitution: 0.1,
+							friction: 0.9,
+							categoryBits: 1
+						}));
+						
+						a2.addChild(new PIXI.Graphics().beginFill(0xFF0000).drawRect(0, 0, w, h));
+						if (!r) {
+							a2.setX(e.data.global.x - a2.width / 2);
+							a2.setY(e.data.global.y - a2.height / 2);
+						} else {
+							a2.setRotation(90 * Math.PI / 180);
+							a2.setX(e.data.global.x + a2.height / 2);
+							a2.setY(e.data.global.y - a2.width / 2);
+						}
+					
+					})
+					/*
+					const baseHeight = 100;
+					const base = world.addBox2d(Pixim.box2d.Rectangle.from(new PIXI.Graphics().beginFill(0x0000FF).drawRect(0, 0, 450 / 2, baseHeight), { isStatic: true }));
+					base.setX(450 / 2 - base.width / 2);
+					base.setY(800 - baseHeight - 100);
+					*/
+					const dead = world.addBox2d(new Pixim.box2d.Edge(new Pixim.box2d.Common.Math.b2Vec2(450 + 2000, 0), { isStatic: true, isSensor: true, maskBits: 1 }));
+					dead.setX(-1000);
+					dead.setY(800 - 10);
+					dead.on('EndContact', (opponent) => {
+						world.removeBox2d(opponent);
+						console.log("gameover");
+					});
+				}
+			}
+			
+			const Content = Pixim.Content.create();
+			Content.defineLibraries({
+				root: Root
+			})
+			const content = new Content();
+			
+			content.addVars({
+				displayDebugView(world) {
+					return document.body.appendChild(world.addDebugDraw(app.view));
+				}
+			})
+			
+			app.adjustHeight(innerHeight)
+			app.attachAsync(content)
+				.then(() => {
+					
+					app.play();
+				})
+		</script>
+	</div>
+	</body>
+</html>

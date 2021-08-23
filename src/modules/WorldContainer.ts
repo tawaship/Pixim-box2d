@@ -26,11 +26,11 @@ export interface IWorldContainerOption {
 	listenEndContact?: boolean;
 	listenPreSolve?: boolean;
 	listenPostSolve?: boolean;
-	displayOffsetX: number;
-	displayOffsetY: number;
-	displayAngle: number;
-	perspectiveRatio: number;
-	isDisplayNegative: boolean;
+	displayOffsetX?: number;
+	displayOffsetY?: number;
+	displayAngle?: number;
+	perspectiveRatio?: number;
+	isDisplayNegative?: boolean;
 }
 
 /**
@@ -82,6 +82,7 @@ function postSolveHandler(contact: Contact) {
  */
 export class WorldContainer extends Container {
 	private _box2dData: IWorldContainerData;
+	declare children: Box2dObject[];
 	
 	constructor(options: IWorldContainerOption) {
 		super();
@@ -199,7 +200,7 @@ export class WorldContainer extends Container {
 		for (const i in this._box2dData.deletes) {
 			const b2d = this._box2dData.deletes[i];
 			delete(targets[i]);
-			if (b2d.body) {
+			if (b2d.hasWorldBody()) {
 				world.DestroyBody(b2d.body);
 				b2d.body = null;
 			}
@@ -219,7 +220,7 @@ export class WorldContainer extends Container {
 			for (const i in targets) {
 				const b2d = targets[i];
 				
-				if (!b2d.body) {
+				if (!b2d.hasWorldBody()) {
 					continue;
 				}
 				
@@ -236,7 +237,7 @@ export class WorldContainer extends Container {
 			for (const i in targets) {
 				const b2d = targets[i];
 				
-				if (!b2d.body) {
+				if (!b2d.hasWorldBody()) {
 					continue;
 				}
 				
@@ -292,7 +293,7 @@ export class WorldContainer extends Container {
 	}
 	
 	addBox2d(b2d: Box2dObject): Box2dObject {
-		if (!b2d.body) {
+		if (!b2d.hasWorldBody()) {
 			const body = this._box2dData.world.CreateBody(b2d.getBodyDef());
 			const fixtureDefs = b2d.getFixtureDefs();
 			

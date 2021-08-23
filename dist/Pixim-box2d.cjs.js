@@ -1,5 +1,5 @@
 /*!
- * pixi-box2d - v1.0.2
+ * pixi-box2d - v1.0.3
  * 
  * @require pixi.js v^5.3.3
  * @require Box2d.js
@@ -200,7 +200,7 @@ class WorldContainer extends pixim_js.Container {
         for (const i in this._box2dData.deletes) {
             const b2d = this._box2dData.deletes[i];
             delete (targets[i]);
-            if (b2d.body) {
+            if (b2d.hasWorldBody()) {
                 world.DestroyBody(b2d.body);
                 b2d.body = null;
             }
@@ -216,7 +216,7 @@ class WorldContainer extends pixim_js.Container {
         if (displayAngle === 0) {
             for (const i in targets) {
                 const b2d = targets[i];
-                if (!b2d.body) {
+                if (!b2d.hasWorldBody()) {
                     continue;
                 }
                 const position = b2d.body.GetPosition();
@@ -230,7 +230,7 @@ class WorldContainer extends pixim_js.Container {
             const ratio = this._box2dData.perspectiveRatio * displayAngle;
             for (const i in targets) {
                 const b2d = targets[i];
-                if (!b2d.body) {
+                if (!b2d.hasWorldBody()) {
                     continue;
                 }
                 const position = b2d.body.GetPosition();
@@ -274,7 +274,7 @@ class WorldContainer extends pixim_js.Container {
         return this._box2dData.world;
     }
     addBox2d(b2d) {
-        if (!b2d.body) {
+        if (!b2d.hasWorldBody()) {
             const body = this._box2dData.world.CreateBody(b2d.getBodyDef());
             const fixtureDefs = b2d.getFixtureDefs();
             for (let i = 0; i < fixtureDefs.length; i++) {
@@ -346,6 +346,10 @@ function createFixtureDef(options = {}, pixi) {
     return fixtureDef;
 }
 /**
+ * @ignore
+ */
+const _body = new World(new Vec2(0, 0), true).CreateBody(staticBodyDef);
+/**
  * [[https://tawaship.github.io/Pixim.js/classes/container.html | Pixim.Container]]
  */
 class Box2dObject extends pixi_js.Container {
@@ -354,7 +358,7 @@ class Box2dObject extends pixi_js.Container {
         const fixtureDef = createFixtureDef(options, this);
         this._box2dData = {
             id: Box2dObject._id++,
-            body: null,
+            body: _body,
             bodyDef: options.isStatic ? staticBodyDef : dynamicBodyDef,
             fixtureDefs: [fixtureDef],
             maskBits: fixtureDef.filter.maskBits
@@ -395,11 +399,19 @@ class Box2dObject extends pixi_js.Container {
     get box2dID() {
         return this._box2dData.id;
     }
+    /**
+     * A [[Body]] instance is created when an object becomes a child of [[WorldContainer]].
+     * However, to keep the code simple, we will return a [[Body]] instance that is shared by all objects if it is not a child.
+     * Therefore, be careful when you get the [[Body]] instance via this property.
+     */
     get body() {
         return this._box2dData.body;
     }
     set body(body) {
-        this._box2dData.body = body;
+        this._box2dData.body = body || _body;
+    }
+    hasWorldBody() {
+        return this._box2dData.body !== _body;
     }
     setX(x) {
         this.x = x;

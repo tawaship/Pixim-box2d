@@ -99,7 +99,7 @@ this.Pixim = this.Pixim || {}, function(exports, pixim_js, box2dwebModule, pixi_
                 var targets = this._box2dData.targets;
                 for (var i in this._box2dData.deletes) {
                     var b2d = this._box2dData.deletes[i];
-                    delete targets[i], b2d.hasWorldBody() && (world.DestroyBody(b2d.body), b2d.body = null);
+                    delete targets[i], b2d.body && (world.DestroyBody(b2d.body), b2d.body = null);
                 }
                 this._box2dData.deletes = [], this.reflect();
             }
@@ -108,7 +108,7 @@ this.Pixim = this.Pixim || {}, function(exports, pixim_js, box2dwebModule, pixi_
             if (0 === displayAngle) {
                 for (var i in targets) {
                     var b2d = targets[i];
-                    if (b2d.hasWorldBody()) {
+                    if (b2d.body) {
                         var position = b2d.body.GetPosition();
                         b2d.y = 30 * position.y - displayOffsetY, b2d.x = 30 * position.x - displayOffsetX, 
                         b2d.rotation = b2d.body.GetAngle();
@@ -118,7 +118,7 @@ this.Pixim = this.Pixim || {}, function(exports, pixim_js, box2dwebModule, pixi_
                 var isDisplayNegative = this._box2dData.isDisplayNegative, ratio = this._box2dData.perspectiveRatio * displayAngle;
                 for (var i$1 in targets) {
                     var b2d$1 = targets[i$1];
-                    if (b2d$1.hasWorldBody()) {
+                    if (b2d$1.body) {
                         var position$1 = b2d$1.body.GetPosition();
                         b2d$1.y = 30 * position$1.y - displayOffsetY;
                         var s = 1 + b2d$1.y * displayAngle;
@@ -142,7 +142,7 @@ this.Pixim = this.Pixim || {}, function(exports, pixim_js, box2dwebModule, pixi_
         }, prototypeAccessors.world.get = function() {
             return this._box2dData.world;
         }, WorldContainer.prototype.addBox2d = function(b2d) {
-            if (!b2d.hasWorldBody()) {
+            if (!b2d.body) {
                 for (var body = this._box2dData.world.CreateBody(b2d.getBodyDef()), fixtureDefs = b2d.getFixtureDefs(), i = 0; i < fixtureDefs.length; i++) {
                     body.CreateFixture(fixtureDefs[i]);
                 }
@@ -173,7 +173,7 @@ this.Pixim = this.Pixim || {}, function(exports, pixim_js, box2dwebModule, pixi_
         return isDynamic ? bodyDef.type = Body.b2_dynamicBody : Body.b2_staticBody, bodyDef;
     }
     var dynamicBodyDef = createBodyDef(!0), staticBodyDef = createBodyDef(!1);
-    var _body = new World(new Vec2(0, 0), !0).CreateBody(staticBodyDef), Box2dObject = function(Container) {
+    var Box2dObject = function(Container) {
         function Box2dObject(options) {
             void 0 === options && (options = {}), Container.call(this);
             var fixtureDef = function(options, pixi) {
@@ -188,7 +188,7 @@ this.Pixim = this.Pixim || {}, function(exports, pixim_js, box2dwebModule, pixi_
             }(options, this);
             this._box2dData = {
                 id: Box2dObject._id++,
-                body: _body,
+                body: null,
                 bodyDef: options.isStatic ? staticBodyDef : dynamicBodyDef,
                 fixtureDefs: [ fixtureDef ],
                 maskBits: fixtureDef.filter.maskBits
@@ -215,9 +215,7 @@ this.Pixim = this.Pixim || {}, function(exports, pixim_js, box2dwebModule, pixi_
         }, prototypeAccessors.body.get = function() {
             return this._box2dData.body;
         }, prototypeAccessors.body.set = function(body) {
-            this._box2dData.body = body || _body;
-        }, Box2dObject.prototype.hasWorldBody = function() {
-            return this._box2dData.body !== _body;
+            this._box2dData.body = body;
         }, Box2dObject.prototype.setX = function(x) {
             this.x = x;
             var body = this._box2dData.body;

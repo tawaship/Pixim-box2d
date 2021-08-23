@@ -200,7 +200,7 @@ export class WorldContainer extends Container {
 		for (const i in this._box2dData.deletes) {
 			const b2d = this._box2dData.deletes[i];
 			delete(targets[i]);
-			if (b2d.hasWorldBody()) {
+			if (b2d.body) {
 				world.DestroyBody(b2d.body);
 				b2d.body = null;
 			}
@@ -220,7 +220,7 @@ export class WorldContainer extends Container {
 			for (const i in targets) {
 				const b2d = targets[i];
 				
-				if (!b2d.hasWorldBody()) {
+				if (!b2d.body) {
 					continue;
 				}
 				
@@ -237,7 +237,7 @@ export class WorldContainer extends Container {
 			for (const i in targets) {
 				const b2d = targets[i];
 				
-				if (!b2d.hasWorldBody()) {
+				if (!b2d.body) {
 					continue;
 				}
 				
@@ -293,7 +293,7 @@ export class WorldContainer extends Container {
 	}
 	
 	addBox2d(b2d: Box2dObject): Box2dObject {
-		if (!b2d.hasWorldBody()) {
+		if (!b2d.body) {
 			const body = this._box2dData.world.CreateBody(b2d.getBodyDef());
 			const fixtureDefs = b2d.getFixtureDefs();
 			

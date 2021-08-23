@@ -1,5 +1,5 @@
 import { Container } from 'pixi.js';
-import { World, BodyDef, FixtureDef, Body, Vec2 } from './Box2dAlias';
+import { BodyDef, FixtureDef, Body } from './Box2dAlias';
 import { PixiToBox2d } from './utils';
 
 export interface IBox2dObjectOption {
@@ -24,9 +24,14 @@ export interface IBox2dObjectOption {
 	isSensor?: boolean;
 }
 
+/**
+ * @private
+ */
+type TBox2dObjectBody = Body | null;
+
 export interface IBox2dObjectData {
 	id: number;
-	body: Body;
+	body: TBox2dObjectBody;
 	bodyDef: BodyDef;
 	fixtureDefs: FixtureDef[];
 	maskBits: number;
@@ -68,11 +73,6 @@ function createFixtureDef(options: IBox2dObjectOption = {}, pixi: Container) {
 	
 	return fixtureDef;
 }
-
-/**
- * @ignore
- */
-const _body: Body = new World(new Vec2(0, 0), true).CreateBody(staticBodyDef);
 
 /**
  * [[https://tawaship.github.io/Pixim.js/classes/container.html | Pixim.Container]]
@@ -117,7 +117,7 @@ export class Box2dObject extends Container {
 		const fixtureDef = createFixtureDef(options, this);
 		this._box2dData = {
 			id: Box2dObject._id++,
-			body: _body,
+			body: null,
 			bodyDef: options.isStatic ? staticBodyDef : dynamicBodyDef,
 			fixtureDefs: [fixtureDef],
 			maskBits: fixtureDef.filter.maskBits
@@ -136,21 +136,12 @@ export class Box2dObject extends Container {
 		return this._box2dData.id;
 	}
 	
-	/**
-	 * A [[Body]] instance is created when an object becomes a child of [[WorldContainer]].
-	 * However, to keep the code simple, we will return a [[Body]] instance that is shared by all objects if it is not a child.
-	 * Therefore, be careful when you get the [[Body]] instance via this property.
-	 */
-	get body(): Body {
+	get body(): TBox2dObjectBody {
 		return this._box2dData.body;
 	}
 	
-	set body(body: Body) {
-		this._box2dData.body = body || _body;
-	}
-	
-	hasWorldBody(): boolean {
-		return this._box2dData.body !== _body;
+	set body(body: TBox2dObjectBody) {
+		this._box2dData.body = body;
 	}
 	
 	setX(x: number): void {
